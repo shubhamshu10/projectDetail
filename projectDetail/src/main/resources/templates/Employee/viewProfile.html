@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="employee/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container p-5">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card paint-card">
+						<div class="card-body">
+							<form th:action="@{/saveEmployee}" method="post">
+
+								<p class="fs-4 text-center text-success" style="font-family: 'Monotype Corsiva';"><b>View Profile</b></p>
+								<hr>
+								<div class="form-group mt-2">
+									<label><b>Name</b></label> <input type="text" name="name"
+										th:value="${employee.name}" readonly class="form-control"
+										required="required">
+
+								</div>
+
+								<div class="form-group mt-2">
+									<label> <b>Email</b></label> <input type="email" name="email"
+										th:value="${employee.email}" readonly class="form-control"
+										required="required">
+								</div>
+
+								<div class="form-group mt-2">
+								    <label> <b>Skill</b></label>
+									<textarea rows="3" cols="" class="form-control" name="skill"
+										th:value="${employee.skill}" readonly placeholder="Enter Skill">[[${employee.skill}]]</textarea>
+								</div>
+
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="card paint-card">
+						<div class="card-body">
+							<form th:action="@{/employee/updateEmployee}" method="post">
+
+								<p class="fs-4 text-center text-danger" style="font-family: 'Monotype Corsiva';font-size:50px;"><b>Edit Profile</b></p>
+								<hr>
+								<div th:if="${session.msg}" class="text-center" role="alert">
+
+									<h4 class="text-success" th:text="${session.msg}"></h4>
+									<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+								</div>
+
+								<div class="form-group mt-2">
+									<label>Enter Name</label> <input type="text" name="name"
+										th:value="${employee.name}" class="form-control"
+										required="required">
+
+								</div>
+
+								<div class="form-group mt-2">
+									<label>Enter Email</label> <input type="email" name="email"
+										th:value="${employee.email}" readonly class="form-control"
+										required="required">
+								</div>
+
+
+								<div class="form-group mt-2">
+									<label> <b>Skill</b></label>
+									<textarea rows="3" cols="" class="form-control" name="about"
+										placeholder="Enter Skill">[[${employee.skill}]]</textarea>
+								</div>
+								<input type="hidden" name="id" th:value="${employee.id}">
+
+
+								<div class="text-center mt-3">
+									<button class="btn bg-primary text-white">Update <i class="fas fa-save"></i></button>
+									<button type="reset" class="btn btn-danger text-white">Reset <i class="fas fa-rectangle-xmark"></i></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+</body>
+</html>

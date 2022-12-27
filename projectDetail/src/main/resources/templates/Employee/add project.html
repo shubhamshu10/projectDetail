@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="employee/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Project</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid p-3 mt-5">
+			<div class="col-md-10 offset-md-1">
+				<div class="card paint-card">
+					<h1 class="text-center text-success"><span style="font-family: 'Monotype Corsiva';color:rgb(64, 0, 64)">Add Project </span></h1>
+					<hr>
+					<div th:if="${session.msg}" class="text-center" role="alert">
+
+						<h4 class="text-success" th:text="${session.msg}"></h4>
+						<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+					</div>
+					<div class="card-body">
+						<form th:action="@{/employee/saveProject}" method="post">
+							<div class="form-group">
+								<label><b>Enter Title</b></label> <input type="text"
+									class="form-control" placeholder="Enter Project Title" name="name" required>
+							</div> <br>
+							<div class="form-group">
+								<label><b>Enter Description</b></label>
+								<textarea rows="12" cols="" name="description" placeholder="Project Description" class="form-control" required></textarea>
+							</div>
+							<div class="text-center mt-3">
+								<button class="btn btn-primary">Submit <i class="fas fa-floppy-disk"></i></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
